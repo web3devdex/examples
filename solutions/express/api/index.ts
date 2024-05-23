@@ -24,6 +24,10 @@ app.get('/uploadUser', function (req, res) {
 	res.sendFile(path.join(__dirname, '..', 'components', 'user_upload_form.htm'));
 });
 
+app.get('/api/health', function (req, res) {
+	return res.send({status: "ok"});
+});
+
 app.post('/uploadSuccessful', urlencodedParser, async (req, res) => {
 	try {
 		await sql`INSERT INTO Users (Id, Name, Email) VALUES (${req.body.user_id}, ${req.body.name}, ${req.body.email});`;
